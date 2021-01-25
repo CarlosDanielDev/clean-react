@@ -2,3 +2,5 @@ node_modules
 .vscode
 coverage
 plubic
+*.scss
+*.css
