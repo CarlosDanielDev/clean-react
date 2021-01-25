@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --passWithNoTests",
+    "start": "webpack-dev-server --open",
+    "test": "jest --passWithNoTests --no-cache --runInBand",
     "test:watch": "npm test -- --watch",
     "test:staged": "npm test -- --findRelatedTests",
-    "test:ci": "npm test -- --coverage",
-    "test:clear": "npm test -- --clearCache"
+    "test:ci": "npm test -- --coverage"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +21,7 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@typescript-eslint/eslint-plugin": "^4.14.0",
+    "clean-webpack-plugin": "^3.0.0",
     "eslint": "^7.18.0",
     "eslint-config-standard-with-typescript": "^11.0.1",
     "eslint-plugin-import": "^2.22.1",
