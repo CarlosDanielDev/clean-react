@@ -10,7 +10,7 @@ module.exports = {
     filename: 'bundle.js'
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', 'scss', 'css'],
+    extensions: ['.ts', '.tsx', '.js', 'scss'],
     alias: {
       '~': path.join(__dirname, 'src')
     }
@@ -21,7 +21,7 @@ module.exports = {
       loader: 'ts-loader',
       exclude: /node_modules/
     }, {
-      test: /\.(s?)css$/,
+      test: /\.scss$/,
       use: [
         {
           loader: 'style-loader'
