@@ -132,7 +132,7 @@ describe('Login Component', () => {
   })
 
   test('Should call Authentication with correct values', () => {
-    const { sut: { getByTestId } authenticationSpy } = makeSut()
+    const { sut: { getByTestId }, authenticationSpy } = makeSut()
     const emailInput = getByTestId('email')
     const email = faker.internet.email()
     fireEvent.input(emailInput, { target: { value: email } })
