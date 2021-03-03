@@ -9,10 +9,13 @@ type SutTypes = {
   validationStub: ValidationStub
 }
 
-const makeSut = (): SutTypes => {
+type SutParams = {
+  validationError: string
+}
+
+const makeSut = (params?: SutParams): SutTypes => {
   const validationStub = new ValidationStub()
-  const errorMessage = faker.random.words()
-  validationStub.errorMessage = errorMessage
+  validationStub.errorMessage = params?.validationError
   const sut = render(<Login validation={validationStub}/>)
 
   return {
@@ -24,7 +27,8 @@ const makeSut = (): SutTypes => {
 describe('Login Component', () => {
   afterEach(cleanup)
   test('Should start with initial state', () => {
-    const { sut: { getByTestId }, validationStub } = makeSut()
+    const validationError = faker.random.words()
+    const { sut: { getByTestId } } = makeSut({validationError})
 
     const errorWrap = getByTestId('error-wrap')
     expect(errorWrap.childElementCount).toBe(0)
@@ -33,55 +37,39 @@ describe('Login Component', () => {
     expect(submitButton.disabled).toBe(true)
 
     const emailStatus = getByTestId('email-status')
-    expect(emailStatus.title).toBe(validationStub.errorMessage)
+    expect(emailStatus.title).toBe(validationError)
     expect(emailStatus.textContent).toBe('🔴')
 
     const passwordStatus = getByTestId('password-status')
-    expect(passwordStatus.title).toBe(validationStub.errorMessage)
+    expect(passwordStatus.title).toBe(validationError)
     expect(passwordStatus.textContent).toBe('🔴')
   })
 
-  // test('Should call validation with correct email', () => {
-  //   const { sut: { getByTestId }, validationStub } = makeSut()
-  //   const emailInput = getByTestId('email')
-  //   const email = faker.internet.email()
-  //   fireEvent.input(emailInput, { target: { value: email } })
-  //   expect(validationStub.fieldName).toBe('email')
-  //   expect(validationStub.fieldValue).toBe(email)
-  // })
-
-  // test('Should call validation with correct password', () => {
-  //   const { sut: { getByTestId }, validationStub } = makeSut()
-  //   const passwordInput = getByTestId('password')
-  //   const password = faker.internet.password()
-  //   fireEvent.input(passwordInput, { target: { value: password } })
-  //   expect(validationStub.fieldName).toBe('password')
-  //   expect(validationStub.fieldValue).toBe(password)
-  // })
-
   test('Should show email error if validation fails', () => {
-    const { sut: { getByTestId }, validationStub } = makeSut()
+    const validationError = faker.random.words()
+    const { sut: { getByTestId } } = makeSut({validationError})
     const emailInput = getByTestId('email')
     const email = faker.internet.email()
     fireEvent.input(emailInput, { target: { value: email } })
     const emailStatus = getByTestId('email-status')
-    expect(emailStatus.title).toBe(validationStub.errorMessage)
+    expect(emailStatus.title).toBe(validationError)
     expect(emailStatus.textContent).toBe('🔴')
   })
 
   test('Should show password error if validation fails', () => {
-    const { sut: { getByTestId }, validationStub } = makeSut()
+    const validationError = faker.random.words()
+    const { sut: { getByTestId } } = makeSut({validationError})
+
     const passwordInput = getByTestId('password')
     const password = faker.internet.password()
     fireEvent.input(passwordInput, { target: { value: password } })
     const passwordStatus = getByTestId('password-status')
-    expect(passwordStatus.title).toBe(validationStub.errorMessage)
+    expect(passwordStatus.title).toBe(validationError)
     expect(passwordStatus.textContent).toBe('🔴')
   })
 
   test('Should show valid email state is Validation succeeds', () => {
-    const { sut: { getByTestId }, validationStub } = makeSut()
-    validationStub.errorMessage = null
+    const { sut: { getByTestId } } = makeSut()
     const emailInput = getByTestId('email')
     const email = faker.internet.email()
     fireEvent.input(emailInput, { target: { value: email } })
@@ -91,8 +79,7 @@ describe('Login Component', () => {
   })
 
   test('Should show valid password state is Validation succeeds', () => {
-    const { sut: { getByTestId }, validationStub } = makeSut()
-    validationStub.errorMessage = null
+    const { sut: { getByTestId } } = makeSut()
     const passwordInput = getByTestId('password')
     const password = faker.internet.password()
     fireEvent.input(passwordInput, { target: { value: password } })
@@ -102,8 +89,7 @@ describe('Login Component', () => {
   })
 
   test('Should enable submit button if form is valid', () => {
-    const { sut: { getByTestId }, validationStub } = makeSut()
-    validationStub.errorMessage = null
+    const { sut: { getByTestId } } = makeSut()
     const emailInput = getByTestId('email')
     const email = faker.internet.email()
     fireEvent.input(emailInput, { target: { value: email } })
