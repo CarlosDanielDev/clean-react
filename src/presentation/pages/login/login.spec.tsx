@@ -17,7 +17,6 @@ class AuthenticationSpy implements Authentication {
   }
 }
 
-
 type SutTypes = {
   sut: RenderResult
   validationStub: ValidationStub
@@ -45,7 +44,7 @@ describe('Login Component', () => {
   afterEach(cleanup)
   test('Should start with initial state', () => {
     const validationError = faker.random.words()
-    const { sut: { getByTestId } } = makeSut({validationError})
+    const { sut: { getByTestId } } = makeSut({ validationError })
 
     const errorWrap = getByTestId('error-wrap')
     expect(errorWrap.childElementCount).toBe(0)
@@ -64,7 +63,7 @@ describe('Login Component', () => {
 
   test('Should show email error if validation fails', () => {
     const validationError = faker.random.words()
-    const { sut: { getByTestId } } = makeSut({validationError})
+    const { sut: { getByTestId } } = makeSut({ validationError })
     const emailInput = getByTestId('email')
     const email = faker.internet.email()
     fireEvent.input(emailInput, { target: { value: email } })
@@ -75,7 +74,7 @@ describe('Login Component', () => {
 
   test('Should show password error if validation fails', () => {
     const validationError = faker.random.words()
-    const { sut: { getByTestId } } = makeSut({validationError})
+    const { sut: { getByTestId } } = makeSut({ validationError })
 
     const passwordInput = getByTestId('password')
     const password = faker.internet.password()
@@ -146,5 +145,4 @@ describe('Login Component', () => {
       password
     })
   })
-
 })
