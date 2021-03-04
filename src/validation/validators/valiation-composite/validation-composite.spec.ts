@@ -19,7 +19,7 @@ const makeSut = (fieldName: string): SutTypes => {
   }
 }
 
-describe('ValidationComposite', () => {
+describe('✅ ValidationComposite', () => {
   test('Should return error if any validation fails', () => {
     const fieldName = faker.database.column()
     const { sut, fieldValidationsSpy } = makeSut(fieldName)

@@ -80,7 +80,7 @@ const testButtonIsDisable = (sut: RenderResult, testId: string, isDisable: boole
   expect(button.disabled).toBe(isDisable)
 }
 
-describe('Login Component', () => {
+describe('🔑 Login Component', () => {
   afterEach(cleanup)
 
   beforeEach(() => {
