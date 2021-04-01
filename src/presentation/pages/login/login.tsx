@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import Styles from './login-styles.scss'
-import { LoginHeader, Input, FormStatus, Footer } from '~/presentation/components'
+import {
+  LoginHeader,
+  Input,
+  FormStatus,
+  Footer
+} from '~/presentation/components'
 import Context from '~/presentation/contexts/form/form-context'
-import { Validation } from '~/presentation/protocols/validation'
+import { Validation } from '~/presentation/protocols'
 import { Authentication } from '~/domain/usecases'
 
 type Props = {
