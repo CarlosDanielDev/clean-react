@@ -1,6 +1,20 @@
+// const fs = require('fs')
 const path = require('path')
+const { EnvironmentPlugin } = require('webpack')
+// const dotenv = require('dotenv')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
+// const getEnv = env => {
+//   const basePath = path.resolve(__dirname, '.env')
+//   const envPath = `${basePath}.${env.NODE_ENV}`
+//   const finalPath = fs.existsSync(envPath) ? envPath : basePath
+//   const finalEnv = dotenv.config({ path: finalPath }).parsed
+
+//   return Object.entries(finalEnv).reduce((acc, [key, value]) => {
+//     acc[`process.env.${key}`] = JSON.stringify(value)
+//     return acc
+//   })
+// }
 module.exports = {
   mode: 'development',
   entry: './src/main/index.tsx',
@@ -38,6 +52,7 @@ module.exports = {
       ]
     }]
   },
+  devtool: 'source-map ./src',
   devServer: {
     contentBase: './public',
     writeToDisk: true,
@@ -48,6 +63,9 @@ module.exports = {
     'react-dom': 'ReactDOM'
   },
   plugins: [
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
+    new EnvironmentPlugin({
+      API_URL: 'https://fordevs.herokuapp.com/api'
+    })
   ]
 }
