@@ -66,11 +66,13 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
           <Input
             type="email"
             name="email"
+            autoComplete="username"
             placeholder="Digite seu e-mail"
           />
           <Input
             type="password"
             name="password"
+            autoComplete="current-password"
             placeholder="Digite sua senha"
           />
           <button
