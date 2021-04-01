@@ -1,12 +1,7 @@
 import axios from 'axios'
 import faker from 'faker'
 
-type MockHttpResponseProps = {
-  data: string
-  status: number
-}
-
-export const mockHttpResponse = (): MockHttpResponseProps => ({
+export const mockHttpResponse = (): any => ({
   data: faker.random.objectElement(),
   status: faker.random.number()
 })
