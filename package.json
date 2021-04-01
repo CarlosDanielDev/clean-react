@@ -1,7 +1,7 @@
 {
   "name": "clean-react",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.1",
+  "description": "React App using TDD, Typescript and Clean Architecture",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --open",
@@ -11,8 +11,8 @@
     "test:ci": "npm test -- --coverage"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Carlos Daniel S.  Oliviera",
+  "license": "MIT",
   "devDependencies": {
     "@testing-library/react": "^11.2.3",
     "@types/faker": "^5.1.5",
