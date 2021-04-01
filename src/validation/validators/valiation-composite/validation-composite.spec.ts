@@ -1,6 +1,7 @@
 import { FieldValidationSpy } from '~/validation/test'
 import { ValidationComposite } from './validation-composite'
 import faker from 'faker'
+import { ValidationBuilder } from '../builder/validation-builder'
 
 type SutTypes = {
   sut: ValidationComposite
@@ -12,7 +13,11 @@ const makeSut = (fieldName: string): SutTypes => {
     new FieldValidationSpy(fieldName),
     new FieldValidationSpy(fieldName)
   ]
-  const sut = new ValidationComposite(fieldValidationsSpy)
+  const sut = ValidationComposite.build(fieldValidationsSpy)
+  // const sut = ValidationComposite.build([
+  //   ...ValidationBuilder.field('email').required().email().build(),
+  //   ...ValidationBuilder.field('password').required().min(3).build()
+  // ])
   return {
     sut,
     fieldValidationsSpy
