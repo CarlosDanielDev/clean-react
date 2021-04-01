@@ -4,7 +4,7 @@ import { Router } from 'react-router-dom'
 import { createMemoryHistory } from 'history'
 import 'jest-localstorage-mock'
 import { render, RenderResult, fireEvent, cleanup, waitFor } from '@testing-library/react'
-import Login from './login'
+import { Login } from '~/presentation/pages'
 import { AuthenticationSpy, ValidationStub } from '~/presentation/test'
 import { InvalidCredentialsError } from '~/domain/errors'
 
@@ -137,6 +137,11 @@ describe('🔑 Login Component', () => {
     const { sut } = makeSut()
     await simulateValidSubmit(sut)
     testElementExists(sut, 'spinner')
+  })
+
+  test('Should render LoginHeader', () => {
+    const { sut } = makeSut()
+    testElementExists(sut, 'login-header')
   })
 
   test('Should call Authentication with correct values', async () => {
