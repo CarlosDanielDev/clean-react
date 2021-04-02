@@ -4,6 +4,7 @@
   "main": "index.js",
   "description": "React App using TDD, Typescript and Clean Architecture",
   "scripts": {
+    "pre-commit": "npx lint-staged",
     "start": "webpack serve --open",
     "test": "jest --passWithNoTests --no-cache --runInBand",
     "test:watch": "npm test -- --watch",
