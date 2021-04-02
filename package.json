@@ -12,6 +12,12 @@
     "check": "npx npm-check -u -s",
     "prepare": "husky install"
   },
+  "lint-staged": {
+    "*.{ts, tsx}": [
+      "eslint 'src/**' --fix",
+      "npm run test:staged"
+    ]
+  },
   "keywords": [
     "react",
     "clean code",
