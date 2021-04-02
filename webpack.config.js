@@ -1,6 +1,6 @@
 // const fs = require('fs')
 const path = require('path')
-const { EnvironmentPlugin } = require('webpack')
+const { EnvironmentPlugin, LoaderOptionsPlugin } = require('webpack')
 // const dotenv = require('dotenv')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
@@ -52,7 +52,7 @@ module.exports = {
       ]
     }]
   },
-  devtool: 'source-map ./src',
+  devtool: 'source-map',
   devServer: {
     contentBase: './public',
     writeToDisk: true,
@@ -66,6 +66,11 @@ module.exports = {
     new CleanWebpackPlugin(),
     new EnvironmentPlugin({
       API_URL: 'https://fordevs.herokuapp.com/api'
+    }),
+    new LoaderOptionsPlugin({
+      options: {
+        open: true
+      }
     })
   ]
 }
